@@ -1,7 +1,7 @@
 import logging
 
 class CustomLogger:
-    # Define color codes
+    # Define color codes for formatting messages
     COLOR_CODES = {
         'HEADER': '\033[95m',
         'OKBLUE': '\033[94m',
@@ -14,6 +14,7 @@ class CustomLogger:
     }
 
     def __init__(self, log_file_name, log_level=logging.INFO):
+        # Initialize logger instance
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
 
@@ -36,17 +37,22 @@ class CustomLogger:
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
 
+    # Method to colorize the message with specified color
     def color_message(self, message, color):
         return f"{self.COLOR_CODES[color]}  {message}  {self.COLOR_CODES['ENDC']}"
 
+    # Log method for informational messages
     def info(self, message):
         self.logger.info(self.color_message(message, 'OKGREEN'))
 
+    # Log method for warning messages
     def warning(self, message):
         self.logger.warning(self.color_message(message, 'WARNING'))
 
+    # Log method for error messages
     def error(self, message):
         self.logger.error(self.color_message(message, 'FAIL'))
 
+    # Log method for exception messages
     def exception(self, message):
         self.logger.exception(self.color_message(message, 'FAIL'))
