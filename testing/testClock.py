@@ -30,7 +30,7 @@ class TestClock(unittest.TestCase):
         mock_read_json_file.return_value = Settings.settings.ORIGINAL_MESSAGES
 
         # Test for different elapsed time scenarios
-        self.assertEqual(self.clock.display_correct_message(0), "tock")
+        self.assertEqual(self.clock.display_correct_message(0), "tick")
         self.assertEqual(self.clock.display_correct_message(30), "tick")
         self.assertEqual(self.clock.display_correct_message(60), "tock")
         self.assertEqual(self.clock.display_correct_message(61), "tick")
@@ -51,7 +51,7 @@ class TestClock(unittest.TestCase):
         }
 
         # Test for different elapsed time scenarios
-        self.assertEqual(self.clock.display_correct_message(0), "tock")
+        self.assertEqual(self.clock.display_correct_message(0), "tick")
         self.assertEqual(self.clock.display_correct_message(30), "tick")
         self.assertEqual(self.clock.display_correct_message(60), "tock")
         self.assertEqual(self.clock.display_correct_message(61), "tick")
@@ -76,7 +76,7 @@ class TestClock(unittest.TestCase):
         self.clock.clock()
 
         # Ensure that the logger was called with the end message
-        self.clock.logger.info.assert_called_with(Constants.END_PROGRAM_MESSAGE)
+        self.clock.logger.warning.assert_called_with(Constants.END_PROGRAM_MESSAGE)
 
 
 # Entry point for running the tests

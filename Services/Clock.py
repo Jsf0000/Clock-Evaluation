@@ -43,6 +43,10 @@ class Clock:
         if elapsed_time > settings.LIMIT_TIME_ACCEPT_CHANGE:
             self.messages = read_json_file(self.messages_file_path)
 
+        # Only for one second
+        if seconds == 0 and minutes == 0 and hours == 0:
+            return self.messages["second_message"]
+
         # Determine the message to display based on seconds, minutes, and hours
         if seconds == 0:
             if minutes == 0 and hours != 0:
